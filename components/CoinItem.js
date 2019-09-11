@@ -9,8 +9,8 @@ class CoinItem extends React.Component {
     return (
       <View style={styles.container}>
         <Image
-          style={{ width: 50, height: 50 }}
-          source={{ uri: 'https://bitcoin.org/img/icons/opengraph.png' }}
+          style={{width: 50, height: 50, marginRight: 5, marginLeft: 5}}
+          source={{uri: this.props.iconUri}}
         />
         <Text style={[styles.text, { flex: 1 }]}>
           {this.props.name || 'Name'}

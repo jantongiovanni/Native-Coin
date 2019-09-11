@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import CoinItem from '../components/CoinItem';
+import { getCoinIconUri } from '../constants/Constants';
+
 
 class CoinView extends React.Component {
   constructor(props) {
@@ -50,7 +52,7 @@ class CoinView extends React.Component {
   }
 
   render () {
-    let coinItems = this.state.coinDatas.map( (data, index) => {
+    let detailCells = this.state.coinDatas.map( (data, index) => {
       const {rank, name, price_usd, market_cap_usd, last_updated} = data; // Destructuring
       return (
         <CoinItem
@@ -58,15 +60,16 @@ class CoinView extends React.Component {
           rank={rank}
           name={name}
           price={price_usd}
-          volume={market_cap_usd}
+          volumn={market_cap_usd}
+          iconUri={getCoinIconUri(name)}
         />
       );
     });
 
     return (
-      <View style={this.props.style}>
-        {coinItems}
-      </View>
+      <ScrollView style={this.props.style}>
+        {detailCells}
+      </ScrollView>
     )
   }
 }
