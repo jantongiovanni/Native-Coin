@@ -19,10 +19,10 @@ class CoinView extends React.Component {
   componentDidMount() { // After component mounted
     this._getCoinDatas(10);
 
-    setInterval(() => {
-      this._getCoinDatas(10);
-      console.log('toggled!');
-    }, 10000);
+    // setInterval(() => {
+    //   this._getCoinDatas(10);
+    //   console.log('toggled!');
+    // }, 10000);
   }
 
   _getCoinDatas = async (limit) => {
@@ -67,10 +67,12 @@ class CoinView extends React.Component {
     render () { // Do not forget import FlatList
       return (
         <FlatList
-          data={this.state.coinDatas}
-          keyExtractor={(item) => item.name}
-          renderItem={this._renderItem}
-        />
+         data={this.state.coinDatas}
+         keyExtractor={(item) => item.name}
+         renderItem={this._renderItem}
+         refreshing={this.state.isLoading}
+         onRefresh={this._getCoinDatas}
+       />
       )
     }
 }
