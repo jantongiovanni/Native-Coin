@@ -30,14 +30,23 @@ class CoinView extends React.Component {
 
     try {
       const response = await fetch(`https://api.coinmarketcap.com/v1/ticker/?limit=${limit}`);
-      const responseJson = await response.json();
-      await this.setState({
-        coinDatas: responseJson,
-        isLoading: false,
-      });
-    } catch(error) {
-      console.error('_getCoinDatas', error);
-    }
+        const responseJson = await response.json();
+
+        const date = new Date();
+        const now = date.toLocaleString()
+
+        if (this.props.refreshDate != null) {
+          this.props.refreshDate(now); // Run func type props
+        }
+
+        await this.setState({
+          coinDatas: responseJson,
+          isLoading: false,
+        });
+
+      } catch(error) {
+        console.error('_getCoinDatas', error);
+      }
   }
 
   render () {
