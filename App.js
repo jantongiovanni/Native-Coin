@@ -22,4 +22,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+  coinView: {
+    width: '100%',
+    flex: 1,
+    flexDirection: 'column', // row
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'flex-start' // center, space-around
+  },
 });
