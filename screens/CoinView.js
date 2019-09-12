@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, FlatList, TouchableOpacity } from 'react-native';
 import CoinItem from '../components/CoinItem';
 import { getCoinIconUri } from '../constants/Constants';
 
@@ -18,11 +18,6 @@ class CoinView extends React.Component {
 
   componentDidMount() { // After component mounted
     this._getCoinDatas(10);
-
-    // setInterval(() => {
-    //   this._getCoinDatas(10);
-    //   console.log('toggled!');
-    // }, 10000);
   }
 
   _getCoinDatas = async (limit) => {
@@ -54,13 +49,18 @@ class CoinView extends React.Component {
   _renderItem = ({item}) => {
       const {rank, name, price_usd, market_cap_usd, last_updated} = item; // Destructuring
       return (
-        <CoinItem
-          rank={rank}
-          name={name}
-          price={price_usd}
-          volumn={market_cap_usd}
-          iconUri={getCoinIconUri(name)}
-        />
+        <TouchableOpacity 
+          onPress={() => this.props.navigation &&
+          this.props.navigation.push('CoinDetail', {title: name})}
+        >
+          <CoinItem
+            rank={rank}
+            name={name}
+            price={price_usd}
+            volumn={market_cap_usd}
+            iconUri={getCoinIconUri(name)}
+          />
+        </TouchableOpacity>
       );
     }
 

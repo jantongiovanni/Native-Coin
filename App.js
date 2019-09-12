@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 import Home from './screens/Home'
+import CoinDetail from './screens/CoinDetail'
 
 const Header = (props) => {
   return (
@@ -29,6 +30,20 @@ const MainStack = createStackNavigator({
         },
       }
     },
+  },
+  CoinDetail: {
+    screen: CoinDetail,
+    navigationOptions: ({navigation}) => {
+      return {
+        title: navigation.getParam('title', 'DETAIL'),
+      }
+    }
+  }
+}, {
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: 'pink',
+    }
   }
 })
 

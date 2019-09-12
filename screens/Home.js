@@ -19,6 +19,7 @@ export default class Home extends React.Component {
     return (
       <View style={styles.container}>
         <CoinView
+          navigation={this.props.navigation}
           refreshDate={this._setRefreshDate}
           style={styles.coinView}
         />
